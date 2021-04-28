@@ -1,0 +1,12 @@
+
+
+CREATE TABLE student
+(
+          std_id CHAR(3),
+          std_name VARCHAR2(20),
+          std_age NUMBER
+);
+
+INSERT INTO student VALUES('101','AHMET CAN', 30);
+
+DROP TABLE student;

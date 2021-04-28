@@ -1,0 +1,13 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT sirket_adi, personel_sayisi, (SELECT Sum(maas)
+         FROM personel 
+         WHERE sirket=sirket_adi)FROM sirketler;]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619524699550]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.013]]></execTime>
+	</historyItem>
+</history>

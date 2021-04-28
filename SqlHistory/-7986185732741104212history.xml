@@ -1,0 +1,20 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select area,numara,to_number(to_char(datestamp,('DD'))) from (
+   SELECT     pr.area as area,
+        act.numara as numara,
+        min(act.DATESTAMP) datestamp
+    FROM omer_deneme act, omer_deneme2 pr
+   WHERE     act.id = pr.id
+         and act.DATESTAMP > TRUNC (SYSDATE)-200
+GROUP BY act.numara,pr.area)
+where datestamp > TRUNC (SYSDATE)-23
+ORDER BY area desc]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619338612446]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.013]]></execTime>
+	</historyItem>
+</history>

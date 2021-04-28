@@ -1,0 +1,23 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[DECLARE
+sayi varchar2(100);
+BEGIN
+SELECT
+numara
+INTO
+sayi
+FROM
+omer_deneme
+WHERE
+id = 2;
+DBMS_OUTPUT.PUT_LINE( sayi );
+END;]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619337428074]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[2]]></executed>
+		<execTime><![CDATA[0.022]]></execTime>
+	</historyItem>
+</history>

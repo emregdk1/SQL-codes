@@ -1,0 +1,15 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select a.id,area,datestamp from omer_deneme a
+inner join
+                     omer_deneme2 b
+on
+        a.id=b.id]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619377850424]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.071]]></execTime>
+	</historyItem>
+</history>

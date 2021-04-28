@@ -1,0 +1,15 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[create table omer_deneme (
+id number,
+numara varchar2(50),
+datestamp date
+)]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619335110217]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.132]]></execTime>
+	</historyItem>
+</history>

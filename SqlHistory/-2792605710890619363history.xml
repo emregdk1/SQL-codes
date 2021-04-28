@@ -1,0 +1,12 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT * FROM kelimeler
+    WHERE REGEXP_LIKE (kelime,'[o]{2}', 'i');]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619272766507]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.009]]></execTime>
+	</historyItem>
+</history>

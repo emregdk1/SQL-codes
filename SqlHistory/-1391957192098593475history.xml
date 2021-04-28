@@ -1,0 +1,12 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT * FROM personel  
+    WHERE id =  '10001' OR id= '10002' OR id= '10004';]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619190317291]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.009]]></execTime>
+	</historyItem>
+</history>

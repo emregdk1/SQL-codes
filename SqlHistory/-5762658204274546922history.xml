@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[file:/C:/Users/EMre/day02.sql]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619098619568]]></timestamp>
+		<type><![CDATA[Script]]></type>
+		<executed><![CDATA[18]]></executed>
+		<execTime><![CDATA[0.0]]></execTime>
+	</historyItem>
+</history>

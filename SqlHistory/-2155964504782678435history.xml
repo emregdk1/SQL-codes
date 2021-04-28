@@ -1,0 +1,13 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select tarih,count(area)
+from omer_deneme4
+group by tarih]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619338922845]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.006]]></execTime>
+	</historyItem>
+</history>

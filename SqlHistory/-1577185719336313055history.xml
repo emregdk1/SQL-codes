@@ -1,0 +1,14 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT sirket_adi,personel_sayisi, ( select ROUND(AVG(maas)) FROM personel
+                                                    WHERE sirket=sirketler.sirket_adi) AS ort_maas
+
+          FROM sirketler;]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619535111861]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.116]]></execTime>
+	</historyItem>
+</history>

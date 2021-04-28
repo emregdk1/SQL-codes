@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[file:/C:/Users/EMre/AppData/Roaming/SQL Developer/day06_delete.sql]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619449390118]]></timestamp>
+		<type><![CDATA[Script]]></type>
+		<executed><![CDATA[45]]></executed>
+		<execTime><![CDATA[0.0]]></execTime>
+	</historyItem>
+</history>

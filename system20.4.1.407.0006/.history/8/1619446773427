@@ -1,0 +1,98 @@
+
+    ---------------------------------------- DELETE ----------------------------------------------------
+    
+        -- DELETE FROM tablo adi; Tablonun tüm icerigini siler.
+        -- Bu komut bir DML komutudur. Dolayisiyla devaminda
+        -- WHERE gibi cümlecikler kullanilabilir.
+        
+        -- DELETE FROM tablo_adi
+        -- WHERE sutun_adi = veri;
+        
+        CREATE TABLE ogrenciler
+    (
+        id CHAR(3),
+        isim VARCHAR2(50),
+        veli_isim VARCHAR2(50),
+        yazili_notu NUMBER(3)       
+    );
+    
+        INSERT INTO ogrenciler VALUES(123, 'Ali Can', 'Hasan',75);
+        INSERT INTO ogrenciler VALUES(124, 'Merve Gul', 'Ayse',85);
+        INSERT INTO ogrenciler VALUES(125, 'Kemal Yasa', 'Hasan',85);
+        INSERT INTO ogrenciler VALUES(126, 'Nesibe Yýlmaz', 'Ayse',95);
+        INSERT INTO ogrenciler VALUES(127, 'Mustafa Bak', 'Can',99);
+        
+        SELECT * FROM ogrenciler;
+        
+       -- =============================================================
+         -- Seçerek silmek için WHERE Anahtar kelimesi kullanýlabilir.
+       --=============================================================
+       
+       -- id'si 124 olan ogrenciyi silelim
+       
+       DELETE FROM ogrenciler
+       WHERE ýd = 124;
+       
+       -- adi Kemal Yasa olan kaydi silelim
+       
+       DELETE FROM ogrenciler
+       WHERE isim = 'Kemal Yasa';
+       
+       -- adi Nesibe Yýlmaz ve Mustafa Bak olan kayitlari silelim
+       
+       DELETE FROM ogrenciler 
+       WHERE isim = 'Nesibe Yýlmaz' OR  isim = 'Mustafa Bak';
+       
+       -- ismi Ali Can olan ve id'si 123 olan kaydi silelim
+       DELETE FROM ogrenciler
+       WHERE ýsým = 'Ali Can' AND id = 123;
+       
+       -- id'si 126'dan büyük olanlari silelim
+       
+       DELETE FROM ogrenciler
+       WHERE id>126;
+       
+       --id'si 123, 125 ve 126 olanlari silelim
+       
+       DELETE FROM ogrenciler
+       WHERE id IN(123,125,126);
+       
+       -- TABLODAKÝ TÜM KAYÝTLARÝ SÝLELÝM
+       
+       DELETE FROM ogrenciler;
+       
+       FLASHBACK TABLE ogrenciler TO BEFORE DROP; -- cöp kutusundaki tabloyu
+                                                                                       -- geri getirir.
+       
+       DROP TABLE ogrenciler; -- tabloyu tamamen siler. (DDL komutudur)
+                                              -- Çöp kutusuna gönderir.
+                                              
+       DROP TABLE ogrenciler PURGE; -- Tamamen sisler(çöp kutusana atmaz.)  
+       
+       
+                                              
+       
+       
+       
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select to_char(datestamp,('DD-MM-YYYY')) from omer_deneme]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619336142348]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.008]]></execTime>
+	</historyItem>
+</history>

@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[insert into omer_deneme2 (id,area) values(3,'A');]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619335406847]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.003]]></execTime>
+	</historyItem>
+</history>

@@ -1,0 +1,13 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT isim,sirket,maas FROM personel
+        WHERE sirket IN (SELECT sirket_adi FROM sirketler
+                                    WHERE personel_sayisi>15000);]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619523560973]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[2]]></executed>
+		<execTime><![CDATA[0.005]]></execTime>
+	</historyItem>
+</history>

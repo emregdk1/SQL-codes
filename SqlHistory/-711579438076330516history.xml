@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT * FROM ogrenciler;]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619447315327]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[19]]></executed>
+		<execTime><![CDATA[0.013]]></execTime>
+	</historyItem>
+</history>

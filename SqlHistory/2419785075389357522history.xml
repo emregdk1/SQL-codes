@@ -1,0 +1,11 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select * from omer_deneme4 where omer_deneme4.tarih=18]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619377271867]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.012]]></execTime>
+	</historyItem>
+</history>

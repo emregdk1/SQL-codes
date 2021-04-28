@@ -1,0 +1,12 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT * FROM personel
+    WHERE maas LIKE '__00%';]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619192217581]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.017]]></execTime>
+	</historyItem>
+</history>

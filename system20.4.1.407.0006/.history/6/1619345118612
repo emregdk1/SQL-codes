@@ -1,0 +1,279 @@
+ 1- tablodaki tarih deðerini sayi deðerine çevirmek için mevcut select sorgusunu create methodu ile birlikte kullanarak tarih formatýný sayý formatýna çeviyoruz.
+ 2-çevirmiþ olduðumuz sayý formatý ile birlikte pivot komutu kullanýlabilmektedir.
+ NOT: çeviri esnasýnda kullanýlmýþ fonksiyonlar ayrýca isimlendirilmesi gerekmektedir. Yoksa PIVOT fonksiyonu kullanýlmamaktadýr.
+ Örnek;  count(numara) as A
+ 
+ select * from (
+   SELECT     pr.PRODUCT_TYPE AS area,
+        act."NUMBER",
+        min(act.DATESTAMP) datestamp
+    FROM SMKONS.ACTIVITYM1 act, SMKONS.PROBSUMMARYM1 pr
+   WHERE     act."NUMBER" = pr."NUMBER"
+         and act.DATESTAMP > TRUNC (SYSDATE)-200
+         AND act.description LIKE ('%to CRM OPERASYON%')
+         AND ACT.TYPE = 'Assignment Group Change'
+GROUP BY act."NUMBER", pr.PRODUCT_TYPE)
+where datestamp > TRUNC (SYSDATE)
+ORDER BY area desc
+
+create table omer_deneme (
+id number,
+numara varchar2(50),
+datestamp date
+)
+
+select * from omer_deneme
+
+create table omer_deneme2 (
+id number,
+area varchar2 (50)
+)
+
+select * from omer_deneme2
+
+insert into omer_deneme (id,numara,datestamp) values(6,45,null);
+
+insert into omer_deneme2 (id,area) values(6,'C');
+
+update omer_deneme set datestamp=sysdate where id in(1,2,3,4,5,6)
+
+update omer_deneme set datestamp=('22-04-2021') where id=3
+
+drop table omer_deneme4
+
+create table omer_deneme4 as (
+ select area,to_number(numara) as numara,to_number(to_char(datestamp,('DD'))) as tarih from (
+   SELECT     pr.area as area,
+        act.numara as numara,
+        min(act.DATESTAMP) datestamp
+    FROM omer_deneme act, omer_deneme2 pr
+   WHERE     act.id = pr.id
+         and act.DATESTAMP > TRUNC (SYSDATE)-200
+GROUP BY act.numara,pr.area)
+where datestamp > TRUNC (SYSDATE)-23
+)
+
+
+select * from omer_deneme4
+
+
+
+select * from omer_deneme
+
+
+SELECT *
+FROM (
+SELECT
+id
+,to_number(to_char(datestamp,('DD')))
+,sum(numara) as ToplamTutar
+FROM omer_deneme
+group by id ,to_number(to_char(datestamp,('DD')))
+) as pTablom
+PIVOT
+(
+SUM(ToplamTutar)
+FOR to_number(to_char(datestamp,('DD'))) IN (22,20)
+)
+AS Pvt
+
+select * from omer_deneme4
+
+insert into omer_deneme4 (area,numara,tarih) values ('A',5,18)
+
+select * from(
+select area,tarih,count(numara) as A
+from omer_deneme4
+group by area,tarih
+)
+PIVOT
+(
+count(A)
+for tarih IN (20,18)
+)
+
+create table omer_deneme3 as(
+select to_number(numara) as numara from omer_deneme)
+
+
+select to_number(to_char(datestamp,('DD'))) as tarih,count(numara)
+from omer_deneme
+group by to_number(to_char(datestamp,('DD')))
+
+select to_number(to_char(datestamp,('DD'))) INTO degisken  from omer_deneme where to_number(to_char(datestamp,('DD')))=22
+
+select datestamp INTO tarih  from omer_deneme where id=2
+
+
+
+DECLARE
+degisken number;
+BEGIN
+select to_number(to_char(datestamp,('DD'))) INTO degisken  from omer_deneme where id=2;
+END;
+
+
+
+
+DECLARE
+   CURSOR c_test_array is
+   SELECT  name FROM test_array;
+   type c_list is varray (6) of test_array.name%type;
+   name_list c_list := c_list();
+   counter integer :=0;
+BEGIN
+   FOR n IN c_test_array LOOP
+      counter := counter + 1;
+      name_list.extend;
+      name_list(counter)  := n.name;
+      dbms_output.put_line('Customer('||counter ||'):'||name_list(counter));
+   END LOOP;
+END;
+/
+
+
+
+declare
+
+   P_VALUE   NUMBER;
+   MESAJ     CLOB;
+
+   CURSOR C1
+   IS
+
+WITH SUBTABLE
+     AS (SELECT /*+ parallel(32) */
+               SUBSTR (
+                   service_name,
+                   INSTR (hata_aciklama, '/') + 1,
+                     INSTR (hata_aciklama, ':')
+                   - INSTR (hata_aciklama, '/')
+                   - 1)
+                   AS STATU,
+                CASE
+                   WHEN tnib.tanimlama_zamani BETWEEN SYSDATE - 2 AND SYSDATE
+                   THEN
+                      1
+                   ELSE
+                      0
+                END
+                   AS "0-2",
+                CASE
+                   WHEN tnib.tanimlama_zamani BETWEEN SYSDATE - 7
+                                                  AND SYSDATE - 2
+                   THEN
+                      1
+                   ELSE
+                      0
+                END
+                   AS "2-7",
+                CASE
+                   WHEN tnib.tanimlama_zamani < SYSDATE - 7 THEN 1
+                   ELSE 0
+                END
+                   AS "7+"
+           FROM netyuz.ttsys_netyuz_interaction_base tnib,
+                netyuz.ttsys_dis_sistem_erisim tdse
+          WHERE tnib.SERVIS_ADI = tdse.DIS_SISTEM_KOD
+ AND tnib.gonderim_sayisi > 0
+                AND NOT tnib.success = 1) --where hata_aciklama like '%GENEL HATA  Mükerrer Arýza%')
+  SELECT STATU,
+         SUM ("0-2") AS AA,
+         SUM ("2-7") AS BB,
+         SUM ("7+") AS CC,
+         SUM ("0-2") + SUM ("2-7") + SUM ("7+") TOPLAM
+    FROM SUBTABLE
+GROUP BY STATU
+UNION
+SELECT 'TOPLAM',
+       COUNT ("0-2") AS AA,
+       COUNT ("2-7") AS BB,
+       COUNT ("7+") AS CC,
+       COUNT ("0-2") + COUNT ("2-7") + COUNT ("7+") TOPLAM
+  FROM SUBTABLE
+ORDER BY TOPLAM DESC;
+   
+BEGIN
+mesaj :=
+      '<html>
+    <head>
+    <style>
+.b1 {
+  FONT-SIZE: 10pt;
+}
+.b2 {
+  FONT-SIZE: 10pt;
+  color: #0033CC;
+  font-weight: bold;
+}
+</style>
+
+    <title>NETYUZ SERVIS HATALARI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-language" content="TR" />
+
+    </head>
+    <body>';
+      mesaj :=
+         mesaj
+         || ' <table border="1"  width:="100%">
+    <tbody>
+      <tr>
+        <td><b>STATU</b></td>
+        <td><b>0-2</b></td>
+        <td><b>2-7</b></td>
+        <td><b>7+</b></td>
+        <td><b>TOPLAM</b></td>
+      </tr>';
+
+      FOR R1 IN C1
+      LOOP
+         mesaj :=
+               mesaj
+            || '<tr><td class="b1">'
+            || R1.STATU
+            || '</td>';
+         mesaj :=
+               mesaj
+            || '<td class="b2">'
+            || R1.AA
+            || '</td>';
+         mesaj :=
+               mesaj
+            || '<td class="b2">'
+            || R1.BB
+            || '</td>';
+         mesaj :=
+               mesaj
+           || '<td class="b2">'
+            || R1.CC
+            || '</td>';
+         mesaj :=
+               mesaj
+            || '<td class="b2">'
+            || R1.TOPLAM
+            || '</td>';
+         mesaj := mesaj || '  </tr>';
+      END LOOP;
+
+
+   mesaj := mesaj || ' </tbody>  </table>';
+
+   mesaj := mesaj || ' <table border="0" cellpadding="15" width:="100%"><tbody><tr><td></td><td></td><td></td></tr></tbody></table>';
+
+
+
+   mesaj := mesaj || '</body></html>';
+
+   DBMAIN.SENDMAIL.
+   SEND (
+      'netyuz_servis_hatalari@ttnet.com.tr',
+      'omer.guduk@etiya.com',
+      '',
+      '',
+      'NETYUZ_SERVIS_HATALARI',
+      Mesaj,
+      1,
+      'html');
+END;
+

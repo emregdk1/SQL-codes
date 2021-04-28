@@ -1,0 +1,20 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[select * from(
+select numara,count(numara)
+from omer_deneme4
+group by numara
+)
+PIVOT
+(
+count(numara)
+for numara IN (45,20)
+)]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619339121806]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.007]]></execTime>
+	</historyItem>
+</history>

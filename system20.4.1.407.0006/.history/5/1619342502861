@@ -1,0 +1,132 @@
+ select * from (
+   SELECT     pr.PRODUCT_TYPE AS area,
+        act."NUMBER",
+        min(act.DATESTAMP) datestamp
+    FROM SMKONS.ACTIVITYM1 act, SMKONS.PROBSUMMARYM1 pr
+   WHERE     act."NUMBER" = pr."NUMBER"
+         and act.DATESTAMP > TRUNC (SYSDATE)-200
+         AND act.description LIKE ('%to CRM OPERASYON%')
+         AND ACT.TYPE = 'Assignment Group Change'
+GROUP BY act."NUMBER", pr.PRODUCT_TYPE)
+where datestamp > TRUNC (SYSDATE)
+ORDER BY area desc
+
+create table omer_deneme (
+id number,
+numara varchar2(50),
+datestamp date
+)
+
+select * from omer_deneme
+
+create table omer_deneme2 (
+id number,
+area varchar2 (50)
+)
+
+select * from omer_deneme2
+
+insert into omer_deneme (id,numara,datestamp) values(6,45,null);
+
+insert into omer_deneme2 (id,area) values(6,'C');
+
+update omer_deneme set datestamp=sysdate where id in(1,2,3,4,5,6)
+
+update omer_deneme set datestamp=('22-04-2021') where id=3
+
+drop table omer_deneme4
+
+create table omer_deneme4 as (
+ select area,to_number(numara) as numara,to_number(to_char(datestamp,('DD'))) as tarih from (
+   SELECT     pr.area as area,
+        act.numara as numara,
+        min(act.DATESTAMP) datestamp
+    FROM omer_deneme act, omer_deneme2 pr
+   WHERE     act.id = pr.id
+         and act.DATESTAMP > TRUNC (SYSDATE)-200
+GROUP BY act.numara,pr.area)
+where datestamp > TRUNC (SYSDATE)-23
+)
+
+
+select * from omer_deneme4
+
+
+
+select * from omer_deneme
+
+
+SELECT *
+FROM (
+SELECT
+id
+,to_number(to_char(datestamp,('DD')))
+,sum(numara) as ToplamTutar
+FROM omer_deneme
+group by id ,to_number(to_char(datestamp,('DD')))
+) as pTablom
+PIVOT
+(
+SUM(ToplamTutar)
+FOR to_number(to_char(datestamp,('DD'))) IN (22,20)
+)
+AS Pvt
+
+select * from omer_deneme4
+
+insert into omer_deneme4 (area,numara,tarih) values ('A',5,18)
+
+select * from(
+select area,tarih,count(numara) as A
+from omer_deneme4
+group by area,tarih
+)
+PIVOT
+(
+count(A)
+for tarih IN (20,18)
+)
+
+create table omer_deneme3 as(
+select to_number(numara) as numara from omer_deneme)
+
+
+select to_number(to_char(datestamp,('DD'))) as tarih,count(numara)
+from omer_deneme
+group by to_number(to_char(datestamp,('DD')))
+
+select to_number(to_char(datestamp,('DD'))) INTO degisken  from omer_deneme where to_number(to_char(datestamp,('DD')))=22
+
+select datestamp INTO tarih  from omer_deneme where id=2
+
+
+
+DECLARE
+degisken number;
+BEGIN
+select to_number(to_char(datestamp,('DD'))) INTO degisken  from omer_deneme where id=2;
+END;
+
+
+
+
+DECLARE
+   CURSOR c_test_array is
+   SELECT  name FROM test_array;
+   type c_list is varray (6) of test_array.name%type;
+   name_list c_list := c_list();
+   counter integer :=0;
+BEGIN
+   FOR n IN c_test_array LOOP
+      counter := counter + 1;
+      name_list.extend;
+      name_list(counter)  := n.name;
+      dbms_output.put_line('Customer('||counter ||'):'||name_list(counter));
+   END LOOP;
+END;
+/
+
+
+
+
+

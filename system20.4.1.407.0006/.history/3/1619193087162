@@ -1,0 +1,113 @@
+
+     CREATE TABLE ogrenciler
+(
+       id NUMBER(9),
+       isim VARCHAR2(50),
+       adres VARCHAR2(100),
+       sinav_notu NUMBER(3) 
+);
+
+     INSERT INTO ogrenciler VALUES(123, 'Ali Can', 'Ankara',75);
+     INSERT INTO ogrenciler VALUES(124, 'Merve Gul', 'Ankara',85);
+     INSERT INTO ogrenciler VALUES(125, 'Kemal Yasa', 'Istanbul',85);
+     
+     SELECT * FROM ogrencýler;
+     --NOTU 80'DEN BUYUK OLANLAR
+     SELECT * FROM ogrenciler
+     WHERE sinav_notu>80;
+     
+     --notu 80'den buyuk olanlarin sadece isim ve not bilgileri
+     SELECT isim,sýnav_notu
+     FROM ogrenciler
+     WHERE sinav_notu>80;
+     
+     SELECT * FROM ogrenciler
+     WHERE adres = 'Ankara';
+     
+     SELECT * FROM ogrenciler
+     WHERE ýd = 124;
+     
+     
+     ------------------------------------------------------------------------------------------
+     
+     CREATE TABLE personel
+    (   
+        id CHAR(5),
+        isim VARCHAR2(50),
+        maas NUMBER(5)
+    );
+    
+    INSERT INTO personel VALUES('10001', 'Ahmet Aslan', 7000);
+    INSERT INTO personel VALUES( '10002', 'Mehmet Yýlmaz' ,12000);
+    INSERT INTO personel VALUES('10003', 'Meryem ', 7215);
+    INSERT INTO personel VALUES('10004', 'Veli Han', 5000);
+    INSERT INTO personel VALUES('10005', 'Mustafa Ali', 5500);
+    INSERT INTO personel VALUES('10005', 'Ayþe Can', 4000);
+?
+    SELECT * FROM personel;
+   
+   ------------------------------------------BETWEEN-------------------------------------------------
+   
+    -- id'si 10002 ile 10005 arasinda olan personel bilgilerini isteyelim
+    
+    SELECT * FROM personel
+    WHERE id>='10002' AND id <='10005';
+    
+    SELECT id,isim,maas
+    FROM personel
+    WHERE id BETWEEN '10002' AND '10005'; --ALT VE ÜST LÝMÝTLER DAHÝLDÝR
+    
+    -- mehmet yýlmaz ile veli han arasýndaki personel bilgilerini listeleyelin
+    
+    SELECT * FROM personel
+    WHERE isim BETWEEN 'Mehmet Yýlmaz' AND 'Veli Han';
+    
+    -- id'si 10002 ile 10004 arasinda olmayanlari listeyelim
+    
+    SELECT * FROM personel
+    WHERE id NOT BETWEEN '10002' AND '10004';
+    
+    --------------------------------------- IN ------------------------------------------------------
+    
+    
+    -- id'si 10001, 10002 VE 10004 olanlari listeyelim
+    
+    SELECT * FROM personel  
+    WHERE id =  '10001' OR id= '10002' OR id= '10004';
+    
+    -- IN yöntemi ile
+    SELECT * FROM personel
+    WHERE id IN ('10001', '10002', '10004');
+    
+    --maasi 
+    SELECT * FROM personel
+    WHERE maas IN('7000','12000');
+    
+    
+    ----------------------------------------------LIKE-------------------------------------------------
+    
+    SELECT * FROM personel
+    WHERE isim LIKE 'M%';
+    
+    -- 2.harfi e olanlari listele
+    SELECT * FROM personel
+    WHERE isim LIKE '_e%';
+    -- maas'inin son iki  hanesi 00 olan
+    SELECT * FROM personel
+    WHERE maas LIKE '%00';
+    
+    SELECT * FROM personel
+    WHERE maas NOT LIKE '____';
+    
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     

@@ -1,0 +1,16 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[SELECT
+id
+,to_number(to_char(datestamp,('DD')))
+,sum(numara) as ToplamTutar
+FROM omer_deneme
+group by id ,to_number(to_char(datestamp,('DD')))]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619336498955]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[2]]></executed>
+		<execTime><![CDATA[0.004]]></execTime>
+	</historyItem>
+</history>

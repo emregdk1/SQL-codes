@@ -1,0 +1,16 @@
+<?xml version='1.0'  encoding='UTF-8' ?>
+<history>
+	<historyItem>
+		<sql><![CDATA[DECLARE
+degisken number;
+BEGIN
+select to_number(to_char(datestamp,('DD'))) INTO degisken  from omer_deneme where id=2;
+DBMS_OUTPUT.PUT_LINE( degisken );
+END;]]></sql>
+		<connection><![CDATA[day02]]></connection>
+		<timestamp><![CDATA[1619337520451]]></timestamp>
+		<type><![CDATA[SQL]]></type>
+		<executed><![CDATA[1]]></executed>
+		<execTime><![CDATA[0.041]]></execTime>
+	</historyItem>
+</history>
